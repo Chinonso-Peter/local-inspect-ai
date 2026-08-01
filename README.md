@@ -73,18 +73,6 @@ Run the test suite:
 npm test
 ```
 
-Run the web app in development:
-
-```bash
-npm run dev
-```
-
-Build the frontend:
-
-```bash
-npm run build
-```
-
 Run the desktop app from the project root:
 
 ```bash
