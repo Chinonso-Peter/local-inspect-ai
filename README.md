@@ -28,7 +28,7 @@ LocalInspect AI is a local-first multimodal desktop app built with Tauri, React,
 ## Gemma Integration
 
 How Gemma 4 Was Implemented
-Gemma 4 is used as the core reasoning engine in all three modes through a local Ollama API endpoint at http://localhost:11434/api/chat. The app uses the configured default model gemma4:e2b, with the model name and timeout both overrideable through environment variables.
+Gemma 4 is used as the core reasoning engine in all three modes through a local Ollama API endpoint at `http://localhost:11434/api/chat`. The app uses the configured default model gemma4:e2b, with the model name and timeout both overrideable through environment variables.
 
 Implementation details:
 
