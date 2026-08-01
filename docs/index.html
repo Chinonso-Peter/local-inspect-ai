@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LocalInspect AI Demo</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="https://unpkg.com/asciinema-player@3.10.0/dist/bundle/asciinema-player.css" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07111f;
+        --panel: #0d1a2d;
+        --panel-2: #10243b;
+        --text: #e8f0ff;
+        --muted: #9db3d1;
+        --accent: #7fc7ff;
+        --line: rgba(160, 190, 230, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at top left, rgba(127, 199, 255, 0.12), transparent 30%),
+          radial-gradient(circle at bottom right, rgba(82, 112, 168, 0.14), transparent 28%),
+          linear-gradient(180deg, #07111f 0%, #040a14 100%);
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 40px;
+      }
+
+      .hero {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: 1.7fr 1fr;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(127, 199, 255, 0.12);
+        color: var(--accent);
+        font-size: 0.88rem;
+        letter-spacing: 0.02em;
+      }
+
+      h1 {
+        margin: 14px 0 10px;
+        font-size: clamp(2.4rem, 4vw, 4.4rem);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+      }
+
+      .lead {
+        margin: 0;
+        max-width: 64ch;
+        color: var(--muted);
+        font-size: 1.03rem;
+        line-height: 1.7;
+      }
+
+      .meta {
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: linear-gradient(180deg, rgba(16, 36, 59, 0.95), rgba(10, 20, 36, 0.98));
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+      }
+
+      .meta h2 {
+        margin: 0 0 10px;
+        font-size: 1rem;
+      }
+
+      .meta ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .player-wrap {
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        overflow: hidden;
+        background: rgba(8, 16, 28, 0.94);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      }
+
+      .player-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(12, 22, 39, 0.9);
+      }
+
+      .player-head strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .player-head span {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .player {
+        width: 100%;
+      }
+
+      .footer {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .footer a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      @media (max-width: 860px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div>
+          <span class="eyebrow">LocalInspect AI live demo</span>
+          <h1>Gemma 4-powered architectural inspection and 3D generation</h1>
+          <p class="lead">
+            This demo shows the project workflow from the terminal: validating the build,
+            confirming the local repository state, and launching the Tauri desktop app used for
+            photo audits, spatial analysis, and procedural building generation.
+          </p>
+        </div>
+
+        <aside class="meta">
+          <h2>What judges can verify</h2>
+          <ul>
+            <li>Public, no-login playback</li>
+            <li>Real repository and build outputs</li>
+            <li>Tauri launch command from the project root</li>
+            <li>Evidence of the Gemma 4 / Ollama workflow</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="player-wrap">
+        <div class="player-head">
+          <div>
+            <strong>Terminal recording</strong>
+            <span>Press play to replay the project setup and launch flow.</span>
+          </div>
+          <div>
+            <span>Project: LocalInspect AI</span>
+          </div>
+        </div>
+        <div id="terminal-player" class="player"></div>
+      </section>
+
+      <p class="footer">
+        Source code: <a href="https://github.com/Chinonso-Peter/local-inspect-ai" target="_blank" rel="noreferrer">github.com/Chinonso-Peter/local-inspect-ai</a>
+      </p>
+    </main>
+
+    <script src="https://unpkg.com/asciinema-player@3.10.0/dist/bundle/asciinema-player.js"></script>
+    <script>
+      const castUrl = new URL("demo.cast", window.location.href).toString();
+      AsciinemaPlayer.create(castUrl, document.getElementById("terminal-player"), {
+        autoplay: false,
+        loop: true,
+        preload: true,
+        cols: 100,
+        rows: 28,
+        speed: 1.15,
+        fit: "width",
+        poster: "npt:0:02",
+      });
+    </script>
+  </body>
+</html>
