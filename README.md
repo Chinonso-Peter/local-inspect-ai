@@ -92,13 +92,3 @@ npm run tauri dev
 ```
 
 If you are running the desktop shell, make sure Ollama is already running locally and the Gemma model is available.
-
-## Submission Notes
-
-For Kaggle, add your public repository or public notebook link in the write-up attachments under **Project Links**.
-
-Suggested entry:
-
-```text
-Public code repository: https://github.com/Chinonso-Peter/local-inspect-ai
-```
