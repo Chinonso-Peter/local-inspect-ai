@@ -27,6 +27,17 @@ LocalInspect AI is a local-first multimodal desktop app built with Tauri, React,
 
 ## Gemma Integration
 
+How Gemma 4 Was Implemented
+Gemma 4 is used as the core reasoning engine in all three modes through a local Ollama API endpoint at http://localhost:11434/api/chat. The app uses the configured default model gemma4:e2b, with the model name and timeout both overrideable through environment variables.
+
+Implementation details:
+
+Images are loaded from disk through Tauri plugins, converted to base64, and attached directly to chat messages.
+Responses are streamed token by token so the UI feels interactive rather than blocking on a full completion.
+The system prompts are specialized for each mode: physical safety audit, spatial reasoning, and architectural code generation.
+The architectural generator asks Gemma 4 to return executable JavaScript inside a fenced code block, then normalizes the response before rendering.
+If the model times out or returns unusable output, the app falls back to deterministic reports or fallback Three.js geometry instead of failing silently.
+
 The app is configured to talk to a local Ollama server at `http://localhost:11434/api/chat`.
 
 Default model:
@@ -89,9 +100,5 @@ For Kaggle, add your public repository or public notebook link in the write-up a
 Suggested entry:
 
 ```text
-Public code repository: https://github.com/<your-username>/local-inspect-ai
+Public code repository: https://github.com/Chinonso-Peter/local-inspect-ai
 ```
-
-## Included Write-up Draft
-
-See [`KAGGLE_WRITEUP.md`](./KAGGLE_WRITEUP.md) for a submission-ready draft you can paste into Kaggle and adjust if needed.
